@@ -43,6 +43,9 @@ def read_number(prompt, minimum, maximum):
     """범위 안의 숫자를 받을 때까지 다시 묻는다 (학습 데이터 범위 밖은 예측을 믿기 어렵기 때문)"""
     while True:
         text = input(prompt).strip()
+        if not text:  # Copilot 리뷰 반영: 빈 입력은 '숫자 오류'와 구분해서 안내
+            print("  값을 입력해 주세요. (Enter만 누르면 넘어가지 않습니다)")
+            continue
         try:
             value = float(text)
         except ValueError:
@@ -195,6 +198,9 @@ def feature_recommend_crops(model, reference, stats, store):
     worst = ranking.iloc[-1]
     print(f"\n  피하는 것이 좋은 작물: {crop_label(worst['crop'])} (적합도 {worst['index']:.2f})")
     print("  적합도 = 예상 수확량 ÷ 그 작물의 보통 수확량 (1.0 = 평년 수준)")
+    # Copilot 리뷰 반영: 적합도는 '과거 대비 상대 수확량'일 뿐이라는 점을 함께 안내
+    print("  ※ 가격·재배 비용·물 사용량과 예측 오차는 반영하지 않은 참고용 순위입니다.")
+    print("    보통 수확량이 아주 작은 작물은 적합도가 크게 나오기 쉬우니 예상 수확량도 함께 보세요.")
 
 
 MENU["2"] = ("토양 맞춤 작물 추천 (TOP 5)", feature_recommend_crops)
