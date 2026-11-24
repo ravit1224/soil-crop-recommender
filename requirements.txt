@@ -1,7 +1,9 @@
-pandas>=2.0
-numpy>=1.24
-scikit-learn>=1.3
-scipy>=1.10
-joblib>=1.3
-matplotlib>=3.7
-seaborn>=0.12
+# 모델(models/crop_yield_model.joblib)을 학습할 때 사용한 버전입니다.
+# joblib으로 저장한 scikit-learn 모델은 버전이 다르면 불러오지 못할 수 있어 버전을 고정했습니다.
+pandas==3.0.5
+numpy==2.5.3
+scikit-learn==1.9.1
+scipy==1.18.1
+joblib==1.6.0
+matplotlib==3.11.2
+seaborn==0.13.2
