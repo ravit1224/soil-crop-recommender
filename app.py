@@ -201,6 +201,77 @@ MENU["2"] = ("토양 맞춤 작물 추천 (TOP 5)", feature_recommend_crops)
 
 
 # ===========================================================================
+# 기능 3. 토양 개선 시뮬레이션
+#   고른 작물에 대해 토양 성분을 하나씩 조금씩 바꿔 가며 다시 예측하고,
+#   수확량이 가장 많이 오르는 조정 방향을 알려 준다. (기상은 사람이 바꿀 수 없으므로 고정)
+# ===========================================================================
+SOIL_STEPS = {            # 한 번에 시험해 볼 조정 폭
+    "n": [-20, -10, 10, 20],
+    "p": [-10, -5, 5, 10],
+    "k": [-10, -5, 5, 10],
+    "ph": [-0.5, -0.3, 0.3, 0.5],
+}
+SOIL_ACTIONS = {          # 조정 방향별 일반적인 관리 방법 (참고용 안내)
+    ("n", +1): "질소질 비료(요소 등)나 녹비작물로 질소 보충",
+    ("n", -1): "질소 비료 사용량 줄이기",
+    ("p", +1): "인산질 비료(용과린 등) 시비",
+    ("p", -1): "인산 비료 사용량 줄이기",
+    ("k", +1): "칼리질 비료(염화칼륨 등) 시비",
+    ("k", -1): "칼리 비료 사용량 줄이기",
+    ("ph", +1): "석회(고토석회)를 뿌려 산성 토양 교정",
+    ("ph", -1): "황 가루·유기물로 알칼리 토양 교정",
+}
+
+
+def feature_soil_simulation(model, reference, stats, store):
+    print("\n━━ 3. 토양 개선 시뮬레이션 ━━")
+    print("개선 효과를 보고 싶은 작물을 골라 주세요.")
+    crop = choose_crop(stats)
+    print("재배철을 골라 주세요.")
+    season = choose_season(stats, crop)
+    conditions = store.get()
+    ranges = reference["input_ranges"]
+
+    # 현재 조건 + 조정 시나리오들을 한꺼번에 예측
+    scenarios = [("현재 토양", None, 0, conditions)]
+    for col, steps in SOIL_STEPS.items():
+        lo, hi = ranges[col]
+        for step in steps:
+            new_value = round(conditions[col] + step, 2)
+            if lo <= new_value <= hi:           # 학습 데이터 범위 밖으로는 시험하지 않음
+                changed = {**conditions, col: new_value}
+                scenarios.append((f"{FEATURE_LABELS[col]} {step:+g}", col, step, changed))
+    rows = pd.DataFrame([{**s[3], "crop": crop, "season": season} for s in scenarios])
+    preds = model.predict(rows)
+    base = preds[0]
+    unit = yield_unit(crop)
+
+    results = pd.DataFrame({"시나리오": [s[0] for s in scenarios], "col": [s[1] for s in scenarios],
+                            "step": [s[2] for s in scenarios], "pred": preds})
+    results["변화율"] = results["pred"] / base - 1
+    better = results.iloc[1:].sort_values("변화율", ascending=False)
+
+    print(f"\n▶ {crop_label(crop)} · 현재 예상 수확량 {base:.2f} {unit}")
+    print("  " + pad("조정", 24) + pad("예상 수확량", 16, "right") + pad("변화", 10, "right"))
+    for _, r in better.head(5).iterrows():
+        print("  " + pad(r["시나리오"], 24) + pad(f"{r['pred']:.2f} {unit}", 16, "right")
+              + pad(f"{r['변화율']:+.1%}", 10, "right"))
+
+    best = better.iloc[0]
+    if best["변화율"] < 0.01:
+        print("\n  현재 토양 조건이 이 작물에 이미 알맞은 편입니다. (1% 이상 오르는 조정 없음)")
+    else:
+        direction = 1 if best["step"] > 0 else -1
+        print(f"\n  가장 효과적인 조정: {best['시나리오']} → 수확량 {best['변화율']:+.1%}")
+        print(f"  관리 방법(일반적인 예): {SOIL_ACTIONS[(best['col'], direction)]}")
+    print("  ※ 학습 데이터의 토양값은 주(州) 단위 평균(30가지)이라, 이 결과는 인과관계가 아닌")
+    print("    '경향'입니다. 실제 비료량은 토양 검정 기관의 시비 처방서를 따라 주세요.")
+
+
+MENU["3"] = ("토양 개선 시뮬레이션", feature_soil_simulation)
+
+
+# ===========================================================================
 # 메인
 # ===========================================================================
 def main():
