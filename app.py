@@ -13,6 +13,7 @@ train_model.py 가 joblib 으로 저장한 회귀 모델을 불러와, 사용자
 
 import json
 import math
+import unicodedata
 
 import joblib
 import pandas as pd
@@ -155,6 +156,48 @@ def feature_predict_yield(model, reference, stats, store):
 
 
 MENU["1"] = ("작물 수확량 예측", feature_predict_yield)
+
+
+# ===========================================================================
+# 기능 2. 토양 맞춤 작물 추천 (TOP 5)
+#   작물마다 수확량 단위·규모가 달라(사탕수수 수십 톤 vs 참깨 1톤 미만) 예측값을 그대로
+#   비교하면 늘 사탕수수가 1위가 된다. 그래서 '예측 수확량 ÷ 그 작물의 보통 수확량'
+#   = 적합도 지수로 순위를 매긴다. 1.2 이면 그 작물의 보통 해보다 20% 더 잘 자란다는 뜻.
+# ===========================================================================
+def pad(text, width, align="left"):
+    """한글은 화면에서 두 칸을 차지하므로, 실제 표시 폭 기준으로 공백을 채워 표 칸을 맞춘다."""
+    shown = sum(2 if unicodedata.east_asian_width(ch) in "WF" else 1 for ch in str(text))
+    space = " " * max(width - shown, 0)
+    return f"{space}{text}" if align == "right" else f"{text}{space}"
+
+
+def feature_recommend_crops(model, reference, stats, store):
+    print("\n━━ 2. 토양 맞춤 작물 추천 ━━")
+    print("언제 재배할 계획인가요?")
+    season = choose_season(stats)
+    conditions = store.get()
+
+    pool = stats[(stats["season"] == season) & (stats["count"] >= MIN_RECORDS_FOR_SEASON)]
+    preds = predict(model, conditions, pool["crop"].tolist(), season)
+    ranking = pool.assign(pred=preds, index=preds / pool["median_yield"].to_numpy())
+    ranking = ranking.sort_values("index", ascending=False).reset_index(drop=True)
+
+    top_n = min(5, len(ranking))
+    print(f"\n▶ {SEASON_NAMES_KO.get(season, season)} 후보 {len(ranking)}종 중 적합도 상위 {top_n}종")
+    print("  " + pad("순위", 6) + pad("작물", 34) + pad("적합도", 8, "right")
+          + pad("예상 수확량", 18, "right") + pad("보통 수확량", 18, "right"))
+    for i, row in ranking.head(top_n).iterrows():
+        unit = yield_unit(row["crop"])
+        print("  " + pad(i + 1, 6) + pad(crop_label(row["crop"]), 34)
+              + pad(f"{row['index']:.2f}", 8, "right")
+              + pad(f"{row['pred']:.2f} {unit}", 18, "right")
+              + pad(f"{row['median_yield']:.2f} {unit}", 18, "right"))
+    worst = ranking.iloc[-1]
+    print(f"\n  피하는 것이 좋은 작물: {crop_label(worst['crop'])} (적합도 {worst['index']:.2f})")
+    print("  적합도 = 예상 수확량 ÷ 그 작물의 보통 수확량 (1.0 = 평년 수준)")
+
+
+MENU["2"] = ("토양 맞춤 작물 추천 (TOP 5)", feature_recommend_crops)
 
 
 # ===========================================================================
