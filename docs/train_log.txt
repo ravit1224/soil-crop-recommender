@@ -1,0 +1,32 @@
+[1] 원시 작물 통계 19,689행 → 토양·기상과 결합 19,689행 (결합 실패 0행)
+[2] 중복 키 0건
+[2] yield / (production/area) 중앙값 0.996 → production, area 제거
+[2] 연도 안에서 (비료/면적)의 표준편차 최대 7.47e-09 → 연도와 같은 정보라 제거
+[2] 집계·단위 상이 항목 제거 1220행
+[2] 수확량 0 제거 97행
+[2] 작물별 극단값(수정 z-점수 |z| > 3.5) 제거 321행
+[2] 관측치 100개 미만 작물 3종 제거 197행 (Khesari, Cardamom, Guar seed)
+[2] 전처리 후 17,854행, 작물 45종, 재배철 6종, 주 30개
+[3] VIF: n 4.1, p 5.1, k 2.0, ph 8.6, avg_temp_c 1.7, total_rainfall_mm 1.8, avg_humidity_percent 3.9
+[3] 주별 토양·기후 군집: 실루엣 점수 최고 k=2 (0.36), PCA 2개 성분 설명력 72% → 탐색용 해석에만 사용, 모델 입력에는 넣지 않음
+[3] IsolationForest 이상치 의심 358행 (상위 작물 {'Sugarcane': 62, 'Maize': 33, 'Rice': 31}) → 기상이 극단적인 해(가뭄·폭우)의 실제 관측이므로 삭제하지 않음
+[4] 학습 14,956행 (1997~2016) / 평가 2,898행 (2017~2020)
+[4] 기준선(작물·재배철 중앙값) 평가 R² 0.705
+    선형 회귀        CV R² 0.807 ± 0.019, RMSE 5.15 (0초)
+    릿지           CV R² 0.805 ± 0.020, RMSE 5.18 (0초)
+    라쏘           CV R² 0.797 ± 0.026, RMSE 5.29 (0초)
+    k-최근접 이웃     CV R² 0.884 ± 0.048, RMSE 3.94 (1초)
+    결정 트리        CV R² 0.924 ± 0.012, RMSE 3.23 (0초)
+    랜덤 포레스트      CV R² 0.949 ± 0.006, RMSE 2.65 (21초)
+    그레이디언트 부스팅   CV R² 0.937 ± 0.012, RMSE 2.95 (3초)
+    보팅(RF+GB)    CV R² 0.947 ± 0.009, RMSE 2.68 (23초)
+[5] 교차검증 1위: 랜덤 포레스트
+[6] 그레이디언트 부스팅 (GridSearchCV, 97초): CV R² 0.937 → 0.943  {'learning_rate': 0.1, 'max_iter': 200, 'max_leaf_nodes': 63, 'min_samples_leaf': 10}
+[6] 랜덤 포레스트 (RandomizedSearchCV, 110초): CV R² 0.949 → 0.949  {'max_depth': 25, 'max_features': 0.8, 'min_samples_leaf': 3, 'n_estimators': 174}
+    최종 선택: 랜덤 포레스트
+[7] 최종 평가 R² 0.898 (학습 R² 0.982), RMSE 4.04, MAE 1.14, log 척도 R² 0.906
+    기준선 대비: R² 0.705 → 0.898
+    순열 중요도(R² 감소량): crop 1.621, n 0.102, p 0.055, avg_temp_c 0.021, avg_humidity_percent 0.019, k 0.019, ph 0.018, season 0.018, total_rainfall_mm 0.002
+[8] 모델 저장: /home/claude/work/soil-crop-recommender/models/crop_yield_model.joblib (12.7 MB)
+    참고값 저장: /home/claude/work/soil-crop-recommender/models/crop_reference.json
+    정확도 목표(평가 R² ≥ 0.80): 달성
