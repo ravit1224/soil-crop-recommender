@@ -1,0 +1,1440 @@
+{
+  "trained_at": "2026-11-25T00:02:36",
+  "algorithm": "랜덤 포레스트",
+  "best_params": {
+    "max_depth": 25,
+    "max_features": 0.8,
+    "min_samples_leaf": 3,
+    "n_estimators": 174
+  },
+  "test_period": "2017-2020",
+  "test_metrics": {
+    "R2": 0.8975043707550816,
+    "RMSE": 4.0431054441498615,
+    "MAE": 1.1428734915994765,
+    "R2_log": 0.9060571696696683
+  },
+  "train_metrics": {
+    "R2": 0.9820996160632403,
+    "RMSE": 1.572043820817944,
+    "MAE": 0.5275252368326505,
+    "R2_log": 0.9671512517011789
+  },
+  "baseline_metrics": {
+    "R2": 0.7046098100740723,
+    "RMSE": 6.86373375587943,
+    "MAE": 2.136379759531919,
+    "R2_log": 0.8038083756247986
+  },
+  "cv_comparison": [
+    {
+      "알고리즘": "랜덤 포레스트",
+      "CV_R2": 0.949059509449836,
+      "CV_R2_std": 0.006427778960903233,
+      "CV_RMSE": 2.646636904396885
+    },
+    {
+      "알고리즘": "보팅(RF+GB)",
+      "CV_R2": 0.947495254323867,
+      "CV_R2_std": 0.009348693448731175,
+      "CV_RMSE": 2.683906252802415
+    },
+    {
+      "알고리즘": "그레이디언트 부스팅",
+      "CV_R2": 0.9365466124287785,
+      "CV_R2_std": 0.011756298761875544,
+      "CV_RMSE": 2.9502602917861362
+    },
+    {
+      "알고리즘": "결정 트리",
+      "CV_R2": 0.9237094050456168,
+      "CV_R2_std": 0.012434622975908463,
+      "CV_RMSE": 3.2294656068217136
+    },
+    {
+      "알고리즘": "k-최근접 이웃",
+      "CV_R2": 0.8840120344420009,
+      "CV_R2_std": 0.047538648980592596,
+      "CV_RMSE": 3.9389590989186822
+    },
+    {
+      "알고리즘": "선형 회귀",
+      "CV_R2": 0.8072835145645689,
+      "CV_R2_std": 0.019450141676360756,
+      "CV_RMSE": 5.154066370499634
+    },
+    {
+      "알고리즘": "릿지",
+      "CV_R2": 0.8054485873030902,
+      "CV_R2_std": 0.020458077982453794,
+      "CV_RMSE": 5.178299780646575
+    },
+    {
+      "알고리즘": "라쏘",
+      "CV_R2": 0.796924672149441,
+      "CV_R2_std": 0.025922919996894868,
+      "CV_RMSE": 5.288535126564971
+    }
+  ],
+  "tuning": [
+    {
+      "알고리즘": "그레이디언트 부스팅",
+      "방법": "GridSearchCV",
+      "튜닝 전 CV_R2": 0.9365466124287785,
+      "튜닝 후 CV_R2": 0.9431787394230466,
+      "최적 하이퍼파라미터": {
+        "learning_rate": "0.1",
+        "max_iter": "200",
+        "max_leaf_nodes": "63",
+        "min_samples_leaf": "10"
+      }
+    },
+    {
+      "알고리즘": "랜덤 포레스트",
+      "방법": "RandomizedSearchCV",
+      "튜닝 전 CV_R2": 0.949059509449836,
+      "튜닝 후 CV_R2": 0.9491529045857792,
+      "최적 하이퍼파라미터": {
+        "max_depth": "25",
+        "max_features": "0.8",
+        "min_samples_leaf": "3",
+        "n_estimators": "174"
+      }
+    }
+  ],
+  "permutation_importance": {
+    "crop": 1.620933023713943,
+    "n": 0.10157970030892158,
+    "p": 0.05463702097393275,
+    "avg_temp_c": 0.021062592547106584,
+    "avg_humidity_percent": 0.019291402818655157,
+    "k": 0.019208909554207666,
+    "ph": 0.01792779976707264,
+    "season": 0.017728953539058834,
+    "total_rainfall_mm": 0.0017924870810631876
+  },
+  "crop_test_median_abs_error": {
+    "Arecanut": 0.4443,
+    "Arhar/Tur": 0.2424,
+    "Bajra": 0.355,
+    "Banana": 3.6006,
+    "Barley": 0.254,
+    "Black pepper": 0.3493,
+    "Cashewnut": 0.3252,
+    "Castor seed": 0.2089,
+    "Coriander": 0.1792,
+    "Cotton(lint)": 0.4807,
+    "Cowpea(Lobia)": 0.2846,
+    "Dry chillies": 0.2879,
+    "Garlic": 0.7432,
+    "Ginger": 1.0683,
+    "Gram": 0.3402,
+    "Groundnut": 0.3145,
+    "Horse-gram": 0.1251,
+    "Jowar": 0.262,
+    "Jute": 2.0134,
+    "Linseed": 0.1092,
+    "Maize": 0.49,
+    "Masoor": 0.1474,
+    "Mesta": 1.0012,
+    "Moong(Green Gram)": 0.1203,
+    "Moth": 0.1596,
+    "Niger seed": 0.1826,
+    "Onion": 2.5114,
+    "Peas & beans (Pulses)": 0.2858,
+    "Potato": 1.4405,
+    "Ragi": 0.1471,
+    "Rapeseed &Mustard": 0.235,
+    "Rice": 0.3994,
+    "Safflower": 0.0977,
+    "Sannhamp": 0.2876,
+    "Sesamum": 0.0989,
+    "Small millets": 0.1876,
+    "Soyabean": 0.2191,
+    "Sugarcane": 6.9509,
+    "Sunflower": 0.2791,
+    "Sweet potato": 1.9643,
+    "Tapioca": 3.295,
+    "Tobacco": 0.3791,
+    "Turmeric": 0.4582,
+    "Urad": 0.1059,
+    "Wheat": 0.25
+  },
+  "vif": {
+    "n": 4.112293384211273,
+    "p": 5.093546144619293,
+    "k": 2.0105253369911047,
+    "ph": 8.622633438921214,
+    "avg_temp_c": 1.658107214014719,
+    "total_rainfall_mm": 1.7820130042087436,
+    "avg_humidity_percent": 3.9161186675814537
+  },
+  "input_ranges": {
+    "n": [
+      50.0,
+      150.0
+    ],
+    "p": [
+      15.0,
+      55.0
+    ],
+    "k": [
+      20.0,
+      50.0
+    ],
+    "ph": [
+      5.5,
+      8.0
+    ],
+    "avg_temp_c": [
+      6.26,
+      28.63
+    ],
+    "total_rainfall_mm": [
+      249.24,
+      5244.36
+    ],
+    "avg_humidity_percent": [
+      34.47,
+      86.06
+    ]
+  },
+  "soil_features": [
+    "n",
+    "p",
+    "k",
+    "ph"
+  ],
+  "weather_features": [
+    "avg_temp_c",
+    "total_rainfall_mm",
+    "avg_humidity_percent"
+  ],
+  "crop_season_stats": [
+    {
+      "crop": "Arecanut",
+      "season": "Kharif",
+      "count": 19,
+      "median_yield": 1.5
+    },
+    {
+      "crop": "Arecanut",
+      "season": "Rabi",
+      "count": 16,
+      "median_yield": 1.019814815
+    },
+    {
+      "crop": "Arecanut",
+      "season": "Whole Year",
+      "count": 109,
+      "median_yield": 1.244285714
+    },
+    {
+      "crop": "Arhar/Tur",
+      "season": "Kharif",
+      "count": 414,
+      "median_yield": 0.779375
+    },
+    {
+      "crop": "Arhar/Tur",
+      "season": "Rabi",
+      "count": 69,
+      "median_yield": 0.778333333
+    },
+    {
+      "crop": "Arhar/Tur",
+      "season": "Whole Year",
+      "count": 16,
+      "median_yield": 1.0559195405000001
+    },
+    {
+      "crop": "Arhar/Tur",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 1.132
+    },
+    {
+      "crop": "Bajra",
+      "season": "Kharif",
+      "count": 389,
+      "median_yield": 1.0
+    },
+    {
+      "crop": "Bajra",
+      "season": "Rabi",
+      "count": 58,
+      "median_yield": 0.951153846
+    },
+    {
+      "crop": "Bajra",
+      "season": "Summer",
+      "count": 52,
+      "median_yield": 2.0
+    },
+    {
+      "crop": "Bajra",
+      "season": "Whole Year",
+      "count": 5,
+      "median_yield": 1.6084
+    },
+    {
+      "crop": "Banana",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 12.72
+    },
+    {
+      "crop": "Banana",
+      "season": "Kharif",
+      "count": 32,
+      "median_yield": 17.02666667
+    },
+    {
+      "crop": "Banana",
+      "season": "Rabi",
+      "count": 1,
+      "median_yield": 12.894
+    },
+    {
+      "crop": "Banana",
+      "season": "Summer",
+      "count": 13,
+      "median_yield": 44.39435897
+    },
+    {
+      "crop": "Banana",
+      "season": "Whole Year",
+      "count": 195,
+      "median_yield": 17.72565217
+    },
+    {
+      "crop": "Banana",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 12.87833333
+    },
+    {
+      "crop": "Barley",
+      "season": "Kharif",
+      "count": 47,
+      "median_yield": 1.715
+    },
+    {
+      "crop": "Barley",
+      "season": "Rabi",
+      "count": 248,
+      "median_yield": 1.367628205
+    },
+    {
+      "crop": "Barley",
+      "season": "Whole Year",
+      "count": 2,
+      "median_yield": 1.633026316
+    },
+    {
+      "crop": "Black pepper",
+      "season": "Kharif",
+      "count": 13,
+      "median_yield": 0.67
+    },
+    {
+      "crop": "Black pepper",
+      "season": "Rabi",
+      "count": 6,
+      "median_yield": 0.7577272724999999
+    },
+    {
+      "crop": "Black pepper",
+      "season": "Whole Year",
+      "count": 107,
+      "median_yield": 0.382857143
+    },
+    {
+      "crop": "Cashewnut",
+      "season": "Kharif",
+      "count": 27,
+      "median_yield": 0.426666667
+    },
+    {
+      "crop": "Cashewnut",
+      "season": "Rabi",
+      "count": 5,
+      "median_yield": 1.398
+    },
+    {
+      "crop": "Cashewnut",
+      "season": "Whole Year",
+      "count": 98,
+      "median_yield": 0.465
+    },
+    {
+      "crop": "Castor seed",
+      "season": "Kharif",
+      "count": 255,
+      "median_yield": 0.586666667
+    },
+    {
+      "crop": "Castor seed",
+      "season": "Rabi",
+      "count": 36,
+      "median_yield": 0.6886666665000001
+    },
+    {
+      "crop": "Castor seed",
+      "season": "Whole Year",
+      "count": 9,
+      "median_yield": 0.344782609
+    },
+    {
+      "crop": "Coriander",
+      "season": "Kharif",
+      "count": 11,
+      "median_yield": 0.575
+    },
+    {
+      "crop": "Coriander",
+      "season": "Rabi",
+      "count": 50,
+      "median_yield": 0.5241666665
+    },
+    {
+      "crop": "Coriander",
+      "season": "Whole Year",
+      "count": 131,
+      "median_yield": 0.405294118
+    },
+    {
+      "crop": "Cotton(lint)",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 0.67
+    },
+    {
+      "crop": "Cotton(lint)",
+      "season": "Kharif",
+      "count": 403,
+      "median_yield": 1.398571429
+    },
+    {
+      "crop": "Cotton(lint)",
+      "season": "Rabi",
+      "count": 26,
+      "median_yield": 2.023909091
+    },
+    {
+      "crop": "Cotton(lint)",
+      "season": "Summer",
+      "count": 14,
+      "median_yield": 0.9450000000000001
+    },
+    {
+      "crop": "Cotton(lint)",
+      "season": "Whole Year",
+      "count": 25,
+      "median_yield": 1.668
+    },
+    {
+      "crop": "Cotton(lint)",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 0.33
+    },
+    {
+      "crop": "Cowpea(Lobia)",
+      "season": "Kharif",
+      "count": 70,
+      "median_yield": 0.7702249999999999
+    },
+    {
+      "crop": "Cowpea(Lobia)",
+      "season": "Rabi",
+      "count": 52,
+      "median_yield": 0.85775
+    },
+    {
+      "crop": "Cowpea(Lobia)",
+      "season": "Summer",
+      "count": 8,
+      "median_yield": 0.286011905
+    },
+    {
+      "crop": "Dry chillies",
+      "season": "Autumn",
+      "count": 3,
+      "median_yield": 0.717222222
+    },
+    {
+      "crop": "Dry chillies",
+      "season": "Kharif",
+      "count": 99,
+      "median_yield": 1.0
+    },
+    {
+      "crop": "Dry chillies",
+      "season": "Rabi",
+      "count": 61,
+      "median_yield": 2.584545455
+    },
+    {
+      "crop": "Dry chillies",
+      "season": "Summer",
+      "count": 23,
+      "median_yield": 2.335
+    },
+    {
+      "crop": "Dry chillies",
+      "season": "Whole Year",
+      "count": 226,
+      "median_yield": 0.9190873015000001
+    },
+    {
+      "crop": "Dry chillies",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 0.595
+    },
+    {
+      "crop": "Garlic",
+      "season": "Kharif",
+      "count": 9,
+      "median_yield": 0.76
+    },
+    {
+      "crop": "Garlic",
+      "season": "Rabi",
+      "count": 48,
+      "median_yield": 1.2245833335
+    },
+    {
+      "crop": "Garlic",
+      "season": "Whole Year",
+      "count": 191,
+      "median_yield": 4.412
+    },
+    {
+      "crop": "Ginger",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 1.62
+    },
+    {
+      "crop": "Ginger",
+      "season": "Kharif",
+      "count": 163,
+      "median_yield": 4.7475
+    },
+    {
+      "crop": "Ginger",
+      "season": "Rabi",
+      "count": 12,
+      "median_yield": 2.9299999999999997
+    },
+    {
+      "crop": "Ginger",
+      "season": "Summer",
+      "count": 2,
+      "median_yield": 1.89375
+    },
+    {
+      "crop": "Ginger",
+      "season": "Whole Year",
+      "count": 142,
+      "median_yield": 5.792611110999999
+    },
+    {
+      "crop": "Ginger",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 1.59
+    },
+    {
+      "crop": "Gram",
+      "season": "Kharif",
+      "count": 17,
+      "median_yield": 0.916666667
+    },
+    {
+      "crop": "Gram",
+      "season": "Rabi",
+      "count": 458,
+      "median_yield": 0.8226300984999999
+    },
+    {
+      "crop": "Gram",
+      "season": "Whole Year",
+      "count": 9,
+      "median_yield": 0.590625
+    },
+    {
+      "crop": "Groundnut",
+      "season": "Autumn",
+      "count": 29,
+      "median_yield": 0.985
+    },
+    {
+      "crop": "Groundnut",
+      "season": "Kharif",
+      "count": 421,
+      "median_yield": 1.017142857
+    },
+    {
+      "crop": "Groundnut",
+      "season": "Rabi",
+      "count": 133,
+      "median_yield": 1.76
+    },
+    {
+      "crop": "Groundnut",
+      "season": "Summer",
+      "count": 104,
+      "median_yield": 1.5032017545
+    },
+    {
+      "crop": "Groundnut",
+      "season": "Whole Year",
+      "count": 18,
+      "median_yield": 1.3866666665
+    },
+    {
+      "crop": "Groundnut",
+      "season": "Winter",
+      "count": 18,
+      "median_yield": 1.128106061
+    },
+    {
+      "crop": "Horse-gram",
+      "season": "Kharif",
+      "count": 208,
+      "median_yield": 0.47611111149999996
+    },
+    {
+      "crop": "Horse-gram",
+      "season": "Rabi",
+      "count": 111,
+      "median_yield": 0.422
+    },
+    {
+      "crop": "Horse-gram",
+      "season": "Summer",
+      "count": 18,
+      "median_yield": 0.262222222
+    },
+    {
+      "crop": "Horse-gram",
+      "season": "Whole Year",
+      "count": 5,
+      "median_yield": 0.459230769
+    },
+    {
+      "crop": "Horse-gram",
+      "season": "Winter",
+      "count": 18,
+      "median_yield": 0.324649425
+    },
+    {
+      "crop": "Jowar",
+      "season": "Autumn",
+      "count": 8,
+      "median_yield": 0.39
+    },
+    {
+      "crop": "Jowar",
+      "season": "Kharif",
+      "count": 316,
+      "median_yield": 0.986163793
+    },
+    {
+      "crop": "Jowar",
+      "season": "Rabi",
+      "count": 126,
+      "median_yield": 0.9624166665
+    },
+    {
+      "crop": "Jowar",
+      "season": "Summer",
+      "count": 30,
+      "median_yield": 1.9753525645
+    },
+    {
+      "crop": "Jowar",
+      "season": "Whole Year",
+      "count": 20,
+      "median_yield": 0.8583333335000001
+    },
+    {
+      "crop": "Jute",
+      "season": "Autumn",
+      "count": 11,
+      "median_yield": 8.1725
+    },
+    {
+      "crop": "Jute",
+      "season": "Kharif",
+      "count": 121,
+      "median_yield": 9.361428571
+    },
+    {
+      "crop": "Jute",
+      "season": "Rabi",
+      "count": 1,
+      "median_yield": 7.056666667
+    },
+    {
+      "crop": "Jute",
+      "season": "Summer",
+      "count": 1,
+      "median_yield": 2.0
+    },
+    {
+      "crop": "Linseed",
+      "season": "Kharif",
+      "count": 9,
+      "median_yield": 0.48
+    },
+    {
+      "crop": "Linseed",
+      "season": "Rabi",
+      "count": 292,
+      "median_yield": 0.43937499999999996
+    },
+    {
+      "crop": "Linseed",
+      "season": "Whole Year",
+      "count": 2,
+      "median_yield": 0.46800327350000004
+    },
+    {
+      "crop": "Maize",
+      "season": "Autumn",
+      "count": 60,
+      "median_yield": 1.7309821429999999
+    },
+    {
+      "crop": "Maize",
+      "season": "Kharif",
+      "count": 506,
+      "median_yield": 1.7294594595000001
+    },
+    {
+      "crop": "Maize",
+      "season": "Rabi",
+      "count": 218,
+      "median_yield": 2.530142857
+    },
+    {
+      "crop": "Maize",
+      "season": "Summer",
+      "count": 143,
+      "median_yield": 2.061333333
+    },
+    {
+      "crop": "Maize",
+      "season": "Whole Year",
+      "count": 21,
+      "median_yield": 1.775
+    },
+    {
+      "crop": "Maize",
+      "season": "Winter",
+      "count": 18,
+      "median_yield": 1.7195054945
+    },
+    {
+      "crop": "Masoor",
+      "season": "Kharif",
+      "count": 18,
+      "median_yield": 0.625
+    },
+    {
+      "crop": "Masoor",
+      "season": "Rabi",
+      "count": 304,
+      "median_yield": 0.7105555555
+    },
+    {
+      "crop": "Masoor",
+      "season": "Whole Year",
+      "count": 1,
+      "median_yield": 0.491666667
+    },
+    {
+      "crop": "Mesta",
+      "season": "Kharif",
+      "count": 183,
+      "median_yield": 5.8716
+    },
+    {
+      "crop": "Mesta",
+      "season": "Rabi",
+      "count": 5,
+      "median_yield": 9.08
+    },
+    {
+      "crop": "Mesta",
+      "season": "Whole Year",
+      "count": 16,
+      "median_yield": 1.327
+    },
+    {
+      "crop": "Moong(Green Gram)",
+      "season": "Autumn",
+      "count": 17,
+      "median_yield": 0.231111111
+    },
+    {
+      "crop": "Moong(Green Gram)",
+      "season": "Kharif",
+      "count": 374,
+      "median_yield": 0.515
+    },
+    {
+      "crop": "Moong(Green Gram)",
+      "season": "Rabi",
+      "count": 187,
+      "median_yield": 0.510294118
+    },
+    {
+      "crop": "Moong(Green Gram)",
+      "season": "Summer",
+      "count": 120,
+      "median_yield": 0.5906944445
+    },
+    {
+      "crop": "Moong(Green Gram)",
+      "season": "Whole Year",
+      "count": 11,
+      "median_yield": 0.601666667
+    },
+    {
+      "crop": "Moong(Green Gram)",
+      "season": "Winter",
+      "count": 17,
+      "median_yield": 0.265357143
+    },
+    {
+      "crop": "Moth",
+      "season": "Kharif",
+      "count": 98,
+      "median_yield": 0.433
+    },
+    {
+      "crop": "Moth",
+      "season": "Rabi",
+      "count": 5,
+      "median_yield": 0.87
+    },
+    {
+      "crop": "Moth",
+      "season": "Whole Year",
+      "count": 1,
+      "median_yield": 0.447272727
+    },
+    {
+      "crop": "Niger seed",
+      "season": "Kharif",
+      "count": 161,
+      "median_yield": 0.342307692
+    },
+    {
+      "crop": "Niger seed",
+      "season": "Rabi",
+      "count": 20,
+      "median_yield": 0.445
+    },
+    {
+      "crop": "Niger seed",
+      "season": "Whole Year",
+      "count": 3,
+      "median_yield": 0.40375
+    },
+    {
+      "crop": "Niger seed",
+      "season": "Winter",
+      "count": 5,
+      "median_yield": 0.264444444
+    },
+    {
+      "crop": "Onion",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 2.0
+    },
+    {
+      "crop": "Onion",
+      "season": "Kharif",
+      "count": 62,
+      "median_yield": 9.9722651535
+    },
+    {
+      "crop": "Onion",
+      "season": "Rabi",
+      "count": 141,
+      "median_yield": 9.954
+    },
+    {
+      "crop": "Onion",
+      "season": "Summer",
+      "count": 51,
+      "median_yield": 11.64536232
+    },
+    {
+      "crop": "Onion",
+      "season": "Whole Year",
+      "count": 183,
+      "median_yield": 8.720454545
+    },
+    {
+      "crop": "Onion",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 2.0
+    },
+    {
+      "crop": "Peas & beans (Pulses)",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 0.433333333
+    },
+    {
+      "crop": "Peas & beans (Pulses)",
+      "season": "Kharif",
+      "count": 65,
+      "median_yield": 1.18625
+    },
+    {
+      "crop": "Peas & beans (Pulses)",
+      "season": "Rabi",
+      "count": 278,
+      "median_yield": 0.9027962965
+    },
+    {
+      "crop": "Peas & beans (Pulses)",
+      "season": "Summer",
+      "count": 1,
+      "median_yield": 0.5475
+    },
+    {
+      "crop": "Peas & beans (Pulses)",
+      "season": "Whole Year",
+      "count": 2,
+      "median_yield": 0.975983796
+    },
+    {
+      "crop": "Peas & beans (Pulses)",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 0.52
+    },
+    {
+      "crop": "Potato",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 5.206666667
+    },
+    {
+      "crop": "Potato",
+      "season": "Kharif",
+      "count": 110,
+      "median_yield": 8.8071022725
+    },
+    {
+      "crop": "Potato",
+      "season": "Rabi",
+      "count": 163,
+      "median_yield": 11.46928571
+    },
+    {
+      "crop": "Potato",
+      "season": "Summer",
+      "count": 35,
+      "median_yield": 12.4
+    },
+    {
+      "crop": "Potato",
+      "season": "Whole Year",
+      "count": 269,
+      "median_yield": 10.27135135
+    },
+    {
+      "crop": "Potato",
+      "season": "Winter",
+      "count": 44,
+      "median_yield": 8.6743965515
+    },
+    {
+      "crop": "Ragi",
+      "season": "Autumn",
+      "count": 44,
+      "median_yield": 0.714
+    },
+    {
+      "crop": "Ragi",
+      "season": "Kharif",
+      "count": 287,
+      "median_yield": 1.002631579
+    },
+    {
+      "crop": "Ragi",
+      "season": "Rabi",
+      "count": 78,
+      "median_yield": 1.6473095235
+    },
+    {
+      "crop": "Ragi",
+      "season": "Summer",
+      "count": 53,
+      "median_yield": 1.778
+    },
+    {
+      "crop": "Ragi",
+      "season": "Whole Year",
+      "count": 16,
+      "median_yield": 1.3575
+    },
+    {
+      "crop": "Ragi",
+      "season": "Winter",
+      "count": 18,
+      "median_yield": 0.5511904759999999
+    },
+    {
+      "crop": "Rapeseed &Mustard",
+      "season": "Kharif",
+      "count": 23,
+      "median_yield": 0.4
+    },
+    {
+      "crop": "Rapeseed &Mustard",
+      "season": "Rabi",
+      "count": 474,
+      "median_yield": 0.768125
+    },
+    {
+      "crop": "Rapeseed &Mustard",
+      "season": "Whole Year",
+      "count": 7,
+      "median_yield": 0.26
+    },
+    {
+      "crop": "Rapeseed &Mustard",
+      "season": "Winter",
+      "count": 17,
+      "median_yield": 0.206785714
+    },
+    {
+      "crop": "Rice",
+      "season": "Autumn",
+      "count": 154,
+      "median_yield": 1.53
+    },
+    {
+      "crop": "Rice",
+      "season": "Kharif",
+      "count": 498,
+      "median_yield": 2.056875
+    },
+    {
+      "crop": "Rice",
+      "season": "Rabi",
+      "count": 139,
+      "median_yield": 2.703333333
+    },
+    {
+      "crop": "Rice",
+      "season": "Summer",
+      "count": 243,
+      "median_yield": 2.538888889
+    },
+    {
+      "crop": "Rice",
+      "season": "Whole Year",
+      "count": 4,
+      "median_yield": 1.6325
+    },
+    {
+      "crop": "Rice",
+      "season": "Winter",
+      "count": 145,
+      "median_yield": 2.042857143
+    },
+    {
+      "crop": "Safflower",
+      "season": "Kharif",
+      "count": 10,
+      "median_yield": 0.825357143
+    },
+    {
+      "crop": "Safflower",
+      "season": "Rabi",
+      "count": 156,
+      "median_yield": 0.5546666665
+    },
+    {
+      "crop": "Safflower",
+      "season": "Whole Year",
+      "count": 2,
+      "median_yield": 0.29874999999999996
+    },
+    {
+      "crop": "Sannhamp",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 5.421666667
+    },
+    {
+      "crop": "Sannhamp",
+      "season": "Kharif",
+      "count": 72,
+      "median_yield": 0.6475
+    },
+    {
+      "crop": "Sannhamp",
+      "season": "Rabi",
+      "count": 1,
+      "median_yield": 3.6
+    },
+    {
+      "crop": "Sannhamp",
+      "season": "Whole Year",
+      "count": 79,
+      "median_yield": 0.316666667
+    },
+    {
+      "crop": "Sesamum",
+      "season": "Autumn",
+      "count": 34,
+      "median_yield": 0.33979798
+    },
+    {
+      "crop": "Sesamum",
+      "season": "Kharif",
+      "count": 436,
+      "median_yield": 0.4275
+    },
+    {
+      "crop": "Sesamum",
+      "season": "Rabi",
+      "count": 80,
+      "median_yield": 0.382857143
+    },
+    {
+      "crop": "Sesamum",
+      "season": "Summer",
+      "count": 59,
+      "median_yield": 0.58
+    },
+    {
+      "crop": "Sesamum",
+      "season": "Whole Year",
+      "count": 38,
+      "median_yield": 0.4979221385
+    },
+    {
+      "crop": "Sesamum",
+      "season": "Winter",
+      "count": 35,
+      "median_yield": 0.2825
+    },
+    {
+      "crop": "Small millets",
+      "season": "Autumn",
+      "count": 8,
+      "median_yield": 0.6183333335
+    },
+    {
+      "crop": "Small millets",
+      "season": "Kharif",
+      "count": 353,
+      "median_yield": 0.737142857
+    },
+    {
+      "crop": "Small millets",
+      "season": "Rabi",
+      "count": 99,
+      "median_yield": 0.921428571
+    },
+    {
+      "crop": "Small millets",
+      "season": "Summer",
+      "count": 9,
+      "median_yield": 0.95
+    },
+    {
+      "crop": "Small millets",
+      "season": "Whole Year",
+      "count": 12,
+      "median_yield": 0.725
+    },
+    {
+      "crop": "Soyabean",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 1.144
+    },
+    {
+      "crop": "Soyabean",
+      "season": "Kharif",
+      "count": 319,
+      "median_yield": 1.00625
+    },
+    {
+      "crop": "Soyabean",
+      "season": "Rabi",
+      "count": 16,
+      "median_yield": 1.2875
+    },
+    {
+      "crop": "Soyabean",
+      "season": "Whole Year",
+      "count": 5,
+      "median_yield": 1.4
+    },
+    {
+      "crop": "Soyabean",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 1.265
+    },
+    {
+      "crop": "Sugarcane",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 32.65666667
+    },
+    {
+      "crop": "Sugarcane",
+      "season": "Kharif",
+      "count": 59,
+      "median_yield": 64.83346667
+    },
+    {
+      "crop": "Sugarcane",
+      "season": "Rabi",
+      "count": 5,
+      "median_yield": 16.72
+    },
+    {
+      "crop": "Sugarcane",
+      "season": "Summer",
+      "count": 2,
+      "median_yield": 32.82
+    },
+    {
+      "crop": "Sugarcane",
+      "season": "Whole Year",
+      "count": 437,
+      "median_yield": 57.615
+    },
+    {
+      "crop": "Sugarcane",
+      "season": "Winter",
+      "count": 20,
+      "median_yield": 57.698824450000004
+    },
+    {
+      "crop": "Sunflower",
+      "season": "Kharif",
+      "count": 216,
+      "median_yield": 0.7755000000000001
+    },
+    {
+      "crop": "Sunflower",
+      "season": "Rabi",
+      "count": 137,
+      "median_yield": 0.77
+    },
+    {
+      "crop": "Sunflower",
+      "season": "Summer",
+      "count": 63,
+      "median_yield": 0.920952381
+    },
+    {
+      "crop": "Sunflower",
+      "season": "Whole Year",
+      "count": 19,
+      "median_yield": 0.978181818
+    },
+    {
+      "crop": "Sweet potato",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 3.6
+    },
+    {
+      "crop": "Sweet potato",
+      "season": "Kharif",
+      "count": 58,
+      "median_yield": 9.1308333335
+    },
+    {
+      "crop": "Sweet potato",
+      "season": "Rabi",
+      "count": 27,
+      "median_yield": 9.564
+    },
+    {
+      "crop": "Sweet potato",
+      "season": "Whole Year",
+      "count": 181,
+      "median_yield": 7.797666667
+    },
+    {
+      "crop": "Sweet potato",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 3.0
+    },
+    {
+      "crop": "Tapioca",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 4.33
+    },
+    {
+      "crop": "Tapioca",
+      "season": "Kharif",
+      "count": 63,
+      "median_yield": 13.26666667
+    },
+    {
+      "crop": "Tapioca",
+      "season": "Rabi",
+      "count": 19,
+      "median_yield": 19.0
+    },
+    {
+      "crop": "Tapioca",
+      "season": "Whole Year",
+      "count": 117,
+      "median_yield": 9.647777778
+    },
+    {
+      "crop": "Tobacco",
+      "season": "Kharif",
+      "count": 42,
+      "median_yield": 1.79375
+    },
+    {
+      "crop": "Tobacco",
+      "season": "Rabi",
+      "count": 57,
+      "median_yield": 2.6325
+    },
+    {
+      "crop": "Tobacco",
+      "season": "Summer",
+      "count": 13,
+      "median_yield": 2.661428571
+    },
+    {
+      "crop": "Tobacco",
+      "season": "Whole Year",
+      "count": 250,
+      "median_yield": 1.11375
+    },
+    {
+      "crop": "Turmeric",
+      "season": "Autumn",
+      "count": 1,
+      "median_yield": 0.833333333
+    },
+    {
+      "crop": "Turmeric",
+      "season": "Kharif",
+      "count": 45,
+      "median_yield": 1.036666667
+    },
+    {
+      "crop": "Turmeric",
+      "season": "Rabi",
+      "count": 29,
+      "median_yield": 1.731842105
+    },
+    {
+      "crop": "Turmeric",
+      "season": "Summer",
+      "count": 1,
+      "median_yield": 0.67
+    },
+    {
+      "crop": "Turmeric",
+      "season": "Whole Year",
+      "count": 257,
+      "median_yield": 2.211428571
+    },
+    {
+      "crop": "Turmeric",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 0.5
+    },
+    {
+      "crop": "Urad",
+      "season": "Autumn",
+      "count": 20,
+      "median_yield": 0.2569444445
+    },
+    {
+      "crop": "Urad",
+      "season": "Kharif",
+      "count": 398,
+      "median_yield": 0.575
+    },
+    {
+      "crop": "Urad",
+      "season": "Rabi",
+      "count": 201,
+      "median_yield": 0.608947368
+    },
+    {
+      "crop": "Urad",
+      "season": "Summer",
+      "count": 82,
+      "median_yield": 0.5678947365
+    },
+    {
+      "crop": "Urad",
+      "season": "Whole Year",
+      "count": 5,
+      "median_yield": 0.6425
+    },
+    {
+      "crop": "Urad",
+      "season": "Winter",
+      "count": 18,
+      "median_yield": 0.2984942525
+    },
+    {
+      "crop": "Wheat",
+      "season": "Kharif",
+      "count": 2,
+      "median_yield": 0.925
+    },
+    {
+      "crop": "Wheat",
+      "season": "Rabi",
+      "count": 511,
+      "median_yield": 1.73
+    },
+    {
+      "crop": "Wheat",
+      "season": "Summer",
+      "count": 17,
+      "median_yield": 1.3836
+    },
+    {
+      "crop": "Wheat",
+      "season": "Whole Year",
+      "count": 7,
+      "median_yield": 1.5
+    },
+    {
+      "crop": "Wheat",
+      "season": "Winter",
+      "count": 1,
+      "median_yield": 1.436428571
+    }
+  ],
+  "rows_used": 17854
+}
