@@ -250,6 +250,7 @@ fast-forward로 합치면 기능 단위 경계가 사라지기 때문입니다. 
 | 5 | `feature/crop-recommendation` | 기능 ② 토양 맞춤 작물 추천 |
 | 6 | `feature/soil-simulation` | 기능 ③ 토양 개선 시뮬레이션 |
 | 7 | `docs/readme` | 문서 정리 |
+| 8 | `feature/copilot-review` | GitHub Copilot 코드 리뷰 반영 (빈 입력 안내, 추천 순위 해석 안내) |
 
 ## 11. 한계와 앞으로 해 볼 것
 
